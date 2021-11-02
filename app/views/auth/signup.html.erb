@@ -1,0 +1,30 @@
+<% provide(:title, t('titles.signup')) %>
+<form class="mt-4">
+    <div class="form-group">
+        <label for="fullName"><%= t('form.full_name') %></label>
+        <input type="email" class="form-control mb-0" placeholder="<%= t('form.full_name') %>">
+    </div>
+    <div class="form-group">
+        <label for="email"><%= t('form.email') %></label>
+        <input type="email" name="email" class="form-control mb-0" placeholder="<%= t('form.email') %>">
+    </div>
+    <div class="form-group">
+        <label for="password"><%= t('form.password') %></label>
+        <input type="password" name="password" class="form-control mb-0" placeholder="<%= t('form.password') %>">
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword"><%= t('form.confirm_password') %></label>
+        <input type="password" name="passwordConfirm" class="form-control mb-0" placeholder="<%= t('form.confirm_password') %>">
+    </div>
+    <div class="d-inline-block w-100">
+        <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+            <input type="checkbox" name="acceptTerms" class="custom-control-input">
+            <label class="custom-control-label" for="termConditions"><%=raw t('form.accept_terms') %></label>
+        </div>
+        <button type="submit" class="btn btn-primary float-right"><%= t('titles.signup') %></button>
+    </div>
+    <div class="sign-info">
+        <span class="dark-color d-inline-block line-height-2"><%= t('form.already_have_account') %> <%= link_to t('titles.login'), signin_path %></span>
+    </div>
+</form>
+<% parent_layout "auth/base_form" %>

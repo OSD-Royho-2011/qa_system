@@ -1,0 +1,24 @@
+<% provide(:title, t('titles.signin')) %>
+<form class="mt-4">
+    <div class="form-group">
+        <label for="emailAddress"><%= t('form.email') %></label>
+        <input type="email" class="form-control mb-0" name="email" placeholder="<%= t('form.email') %>">
+    </div>
+    <div class="form-group">
+        <label for="password"><%= t('form.password') %></label>
+        <a href="#" class="float-right"><%= t('form.forgot_password') %></a>
+        <input type="password" class="form-control mb-0" name="password" placeholder="<%= t('form.password') %>">
+    </div>
+    <div class="d-inline-block w-100">
+        <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+            <input type="checkbox" name="remember" class="custom-control-input">
+            <label class="custom-control-label" for="rememberMe"><%= t('form.remember_me') %></label>
+        </div>
+        <button type="submit" class="btn btn-primary float-right"><%= t('titles.signin') %></button>
+    </div>
+    <div class="sign-info">
+        <span class="dark-color d-inline-block line-height-2"><%= t('form.dont_have_account') %> <%= link_to t('titles.signup'), signup_path %></span>
+    </div>
+</form>
+<% parent_layout "auth/base_form" %>
+
