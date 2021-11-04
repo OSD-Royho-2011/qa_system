@@ -1,0 +1,16 @@
+<% content_for :stylesheets do %>
+    <%= render 'layouts/consumer_stylesheets' %>
+<% end %>
+<% content_for :javascripts do %>
+    <%= render 'javascripts' %>
+<% end %>
+<div class="wrapper">
+    <%= render 'layouts/sidebar' %>
+    <%= render 'layouts/header' %>
+    <div id="content-page" class="content-page">
+        <div class="container relative">
+            <%= yield %>
+        </div>
+    </div>
+    <%= render 'layouts/footer' %>
+</div>

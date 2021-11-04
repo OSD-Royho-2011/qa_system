@@ -1,4 +1,3 @@
-
 module LayoutHelper
     
     # Used to achieve nested layouts without content_for
