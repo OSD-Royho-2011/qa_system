@@ -1,0 +1,27 @@
+<% content_for :stylesheets do %>
+    <%= render 'stylesheets' %>
+<% end %>
+<section class="sign-in-page">
+    <div id="container-inside">
+        <div id="circle-small"></div>
+        <div id="circle-medium"></div>
+        <div id="circle-large"></div>
+        <div id="circle-xlarge"></div>
+        <div id="circle-xxlarge"></div>
+    </div>
+    <div class="container p-0">
+        <div class="row no-gutters">
+            <div class="col-md-6 text-center pt-5">
+                <div class="sign-in-detail text-white">
+                </div>
+            </div>
+            <div class="col-md-6 bg-white pt-5">
+                <div class="sign-in-from">
+                    <h1 class="mb-0"><%= yield(:title) %></h1>
+                    <p><%= t('messages.enter_info') %></p>
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
