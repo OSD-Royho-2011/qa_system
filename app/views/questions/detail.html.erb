@@ -1,4 +1,4 @@
-<% provide(:title, "Detail") %>
+<% provide(:title, t('titles.detail')) %>
 <div class="row">
     <div class="col-sm-12">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -50,7 +50,7 @@
                         <img src="<%= image_url('page-img/p1.jpg') %>" alt="post-image" class="img-fluid rounded w-100">
                     </a>
                 </div>
-                <%= render 'comment_area' %>
+                <%= render 'shared/comment_area' %>
             </div>
         </div>
     </div>
