@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   get "/signup", to: "auth#signup"
   get "/feeds", to: "questions#index"
   get "/detail", to: "questions#detail"
+  scope "admin" do
+    get "/index", to: "admin#index"
+    get "/management", to: "admin#management"
+  end
 end

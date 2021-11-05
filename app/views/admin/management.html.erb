@@ -1,0 +1,46 @@
+<% provide(:title, t('titles.management')) %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title"><%= t('titles.user_list') %></h4>
+                </div>
+            </div>
+            <div class="iq-card-body">
+                <ul class="request-list list-inline m-0 p-0">
+                    <li class="d-flex align-items-center">
+                        <div class="user-img img-fluid">
+                            <img src="<%= image_url('user/05.jpg') %>" alt="story-img" class="rounded-circle avatar-40">
+                        </div>
+                        <div class="media-support-info ml-3">
+                            <h6>UiCA</h6>
+                            <p class="mb-0">Joined on May 2013</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a href="javascript:void();" class="mr-3 btn btn-primary rounded"><%= t('titles.edit_role') %></a>
+                            <a href="javascript:void();" class="mr-3 btn btn-secondary rounded"><%= t('titles.ban') %></a>                                    
+                        </div>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <div class="user-img img-fluid">
+                            <img src="<%= image_url('user/07.jpg') %>" alt="story-img" class="rounded-circle avatar-40">
+                        </div>
+                        <div class="media-support-info ml-3">
+                            <h6>Mr. A</h6>
+                            <p class="mb-0">Joined on June 2021</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a href="javascript:void();" class="mr-3 btn btn-primary rounded"><%= t('titles.edit_role') %></a>
+                            <a href="javascript:void();" class="mr-3 btn btn-secondary rounded"><%= t('titles.ban') %></a>                                    
+                        </div>
+                    </li>
+                    <li class="d-block text-center">
+                        <a href="#" class="btn btn-request">View More User</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<% parent_layout "layouts/base_layout" %>
