@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-list">
                     <li>
-                        <a href="<%= feeds_path %>" class="iq-waves-effect d-flex align-items-center">
+                        <a href="<%= user_profile_path %>" class="iq-waves-effect d-flex align-items-center">
                             <img src="<%= image_url('user/1.jpg') %>" class="img-fluid rounded-circle mr-3" alt="user">
                             <div class="caption">
                                 <h6 class="mb-0 line-height">UiCA</h6>
@@ -41,7 +41,7 @@
                                     <div class="bg-primary p-3 line-height">
                                         <h5 class="mb-0 text-white line-height"><%= t('titles.hello') %> UiCA</h5>
                                     </div>
-                                    <a href="<%= feeds_path %>" class="iq-sub-card iq-bg-primary-hover">
+                                    <a href="<%= user_profile_path %>" class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-primary">
                                                 <i class="fas fa-user"></i>
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="<%= feeds_path %>" class="iq-sub-card iq-bg-warning-hover">
+                                    <a href="<%= user_edit_path %>" class="iq-sub-card iq-bg-warning-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-warning">
                                                 <i class="fas fa-user-edit"></i>
@@ -60,17 +60,6 @@
                                             <div class="media-body ml-3">
                                                 <h6 class="mb-0 "><%= t('titles.edit_profile') %></h6>
                                                 <p class="mb-0 font-size-12"><%= t('titles.edit_profile_msg') %></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="<%= feeds_path %>" class="iq-sub-card iq-bg-info-hover">
-                                        <div class="media align-items-center">
-                                            <div class="rounded iq-card-icon iq-bg-info">
-                                                <i class="fas fa-user-cog"></i>
-                                            </div>
-                                            <div class="media-body ml-3">
-                                                <h6 class="mb-0 "><%= t('titles.account_setting') %></h6>
-                                                <p class="mb-0 font-size-12"><%= t('titles.account_setting_msg') %></p>
                                             </div>
                                         </div>
                                     </a>

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     get "/index", to: "admin#index"
     get "/management", to: "admin#management"
   end
+  get "user/profile"
+  get "user/edit"
 end
