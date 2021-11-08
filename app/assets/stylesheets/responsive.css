@@ -18,7 +18,7 @@ NOTE: This file contains the styling for responsive Template.
 		.right-sidebar-mini.right-sidebar { transform: translateX(calc(111% + -2em)); }
 		.right-sidebar-mini.right-sidebar .right-sidebar-toggle { opacity: 1; }
 		body.right-sidebar-close footer {width: calc(100vw - 260px);}
-		body.sidebar-main .iq-footer {margin-left: 80px; width: calc(100vw - 335px);}
+		body.sidebar-main .iq-footer {margin-left: 80px;}
 		body.sidebar-main.right-sidebar-close .iq-footer { width: calc(100vw - 90px);}
 	}
 	@media (min-width:1300px) and (max-width:1499px) {
