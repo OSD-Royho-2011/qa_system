@@ -1,0 +1,13 @@
+<% provide(:title, t('titles.reset_password')) %>
+<% provide(:form_msg, t('messages.recover_psw_msg')) %>
+<%= form_for(:password_reset, url: password_resets_path) do |f| %>
+    <%= render 'shared/flash_message' %>
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, :required => true, class: "form-control mb-0", placeholder: t('form.enter_email') %>
+    </div>
+    <div class="d-inline-block w-100">
+        <%= f.submit t('titles.reset_password'), class: "btn btn-primary float-right" %>
+    </div>
+<% end %>
+<% parent_layout "layouts/base_form" %>

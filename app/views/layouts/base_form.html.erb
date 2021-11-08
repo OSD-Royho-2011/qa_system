@@ -2,7 +2,7 @@
     <%= render 'layouts/common_stylesheets' %>
 <% end %>
 <% content_for :javascripts do %>
-    <%= render 'javascripts' %>
+    <%= render 'users/javascripts' %>
 <% end %>
 <section class="sign-in-page">
     <div id="container-inside">
@@ -21,7 +21,7 @@
             <div class="col-md-6 bg-white pt-5">
                 <div class="sign-in-from">
                     <h1 class="mb-0"><%= yield(:title) %></h1>
-                    <p><%= t('messages.enter_info') %></p>
+                    <p><%= yield(:form_msg) %></p>
                     <%= yield %>
                 </div>
             </div>

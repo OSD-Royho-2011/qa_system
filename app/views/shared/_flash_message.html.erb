@@ -1,0 +1,6 @@
+ <% flash.each do |message_type, message| %>
+    <div class="<%= "alert text-white bg-#{message_type}" %>" role="alert">
+        <div class="iq-alert-text"><%= message.html_safe %></div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+<% end %>

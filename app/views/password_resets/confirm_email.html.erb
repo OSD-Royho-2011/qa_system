@@ -1,0 +1,6 @@
+<% provide(:title, t('titles.confirm_email')) %>
+<% provide(:form_msg, t('messages.confirm_email', recover_email: @user.email)) %>
+<div class="d-inline-block w-100">
+    <%= link_to t('button.back_to_login'), login_path, type: "submit", class: "btn btn-primary mt-3" %>
+</div>
+<% parent_layout "layouts/base_form" %>
