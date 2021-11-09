@@ -28,6 +28,12 @@ en:
     public_msg: "Everyone can see your information"
     anonymous: "Anonymous"
     anonymous_msg: "Your information will be hidden"
+    new_question: "New Question"
+    question_list: "Question list"
+    management: "Management"
+    user_list: "User list"
+    edit_role: "Edit Role"
+    ban: "Ban"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -40,3 +46,7 @@ en:
     accept_terms: "I accept <a href='#''>Terms and Conditions</a>"
   messages:
     enter_info: "Enter your email address and password to access admin panel."
+  status:
+    pending: "Pending"
+    approved: "Approved"
+    closed: "Closed"
