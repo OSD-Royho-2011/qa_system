@@ -26,7 +26,7 @@ class PasswordResetsController < ApplicationController
 		elsif @user.update(user_params)
 			log_in @user
 			@user.update_attribute(:reset_digest, nil)
-			flash[:success] = t('messages.psw_has_reset')
+			flash[:primary] = t('messages.psw_has_reset')
 			redirect_to @user
 		else
 			render :edit
@@ -39,25 +39,25 @@ class PasswordResetsController < ApplicationController
 			params.require(:user).permit(:password, :password_confirmation)
 		end
 
-		# Before filters
-		
 		def get_user
 			@user = User.find_by(email: params[:email])
+			return unless @user.nil?
+			flash[:danger] = t('messages.user_not_exist')
+			redirect_to login_url
 		end
 
 		# Confirms a valid user.
 		def valid_user
-			unless (@user && @user.activated? &&
-				@user.authenticated?(:reset, params[:id]))
-				redirect_to root_url
-			end
+			return if @user.blank?
+			return if @user.activated?
+			return if @user.authenticated?(:reset, params[:id])
+			redirect_to root_url
 		end
 
 		# Checks expiration of reset token.
 		def check_expiration
-			if @user.password_reset_expired?
-				flash[:danger] = t('messages.psw_reset_expired')
-				redirect_to new_password_reset_url
-			end
+			return unless @user.password_reset_expired?
+			flash[:danger] = t('messages.psw_reset_expired')
+			redirect_to new_password_reset_url
 		end
 end

@@ -1,0 +1,20 @@
+<% 5.times do |n| %>
+benifit_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  category: benifit
+<% end %>
+
+<% 5.times do |n| %>
+love_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  category: love
+<% end %>
+
+<% 5.times do |n| %>
+environment_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  category: environment
+<% end %>

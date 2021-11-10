@@ -6,75 +6,43 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">&nbsp;<i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <div class="d-flex align-items-center">
-                    <div class="user-img">
-                        <img src="<%= image_url('user/1.jpg') %>" alt="userimg" class="avatar-60 rounded-circle img-fluid">
+                <%= form_for(@question) do |f| %>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img">
+                            <img src="<%= image_url('user/1.jpg') %>" alt="userimg" class="avatar-60 rounded-circle img-fluid">
+                        </div>
+                        <div class="post-text ml-3 w-100">
+                            <%= f.text_field :content, :required => true, class: 'form-control mb-0', placeholder: t('form.create_qa'), style: 'border:none;' %>
+                        </div>
                     </div>
-                    <form class="post-text ml-3 w-100" action="javascript:void();">
-                        <input type="text" class="form-control rounded" placeholder="What is your question?" style="border:none; overflow-wrap: break-word;word-wrap: break-word;hyphens: auto;">
-                    </form>
-                </div>
-                <hr>
-                <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/07.png') %>" alt="icon" class="img-fluid"> Photo/Video</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/08.png') %>" alt="icon" class="img-fluid"> Tag Friend</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/09.png') %>" alt="icon" class="img-fluid"> Feeling/Activity</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/10.png') %>" alt="icon" class="img-fluid"> Check in</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/11.png') %>" alt="icon" class="img-fluid"> Live Video</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/12.png') %>" alt="icon" class="img-fluid"> Gif</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/13.png') %>" alt="icon" class="img-fluid"> Watch Party</div>
-                    </li>
-                    <li class="col-md-6 mb-3">
-                        <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img src="<%= image_url('small/14.png') %>" alt="icon" class="img-fluid"> Play with Friends</div>
-                    </li>
-                </ul>
-                <hr>
-                <div class="other-option">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="iq-card-post-toolbar">
-                            <div class="dropdown">
-                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                                <span class="btn btn-primary"><%= t('titles.public') %></span>
-                                </span>
-                                <div class="dropdown-menu m-0 p-0">
-                                    <a class="dropdown-item p-3" href="#">
-                                        <div class="d-flex align-items-top">
-                                            <div class="icon font-size-20"><i class="fas fa-globe-americas"></i></div>
-                                            <div class="data ml-2">
-                                                <h6><%= t('titles.public') %></h6>
-                                                <p class="mb-0"><%= t('titles.public_msg') %></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item p-3" href="#">
-                                        <div class="d-flex align-items-top">
-                                            <div class="icon font-size-20"><i class="fas fa-user-shield"></i></div>
-                                            <div class="data ml-2">
-                                                <h6><%= t('titles.anonymous') %></h6>
-                                                <p class="mb-0"><%= t('titles.anonymous_msg') %></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                    <hr>
+                    <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
+                        <li class="col-md-12 mb-3">
+                            <%= f.label :category %>
+                            <%= f.select :category_ids, options_from_collection_for_select(@categories, :id, :name), {}, {:multiple => true, :class => 'form-control'} %>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div>
+                        <%= f.label :image %>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: 'custom-file-input' %>
+                                <%= f.label :image, class: "custom-file-label" %>
                             </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary d-block w-100 mt-3"><%= t('titles.post') %></button>
+                    <%= f.submit t('titles.post'), class: "btn btn-primary d-block w-100 mt-3" %>
+                <% end %>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $("#question_image").bind("change", function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+            alert("Maximum file size is 5MB. Please choose a smaller file.");
+        }
+    });
+</script>
