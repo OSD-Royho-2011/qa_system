@@ -1,0 +1,11 @@
+<%= form_for(:user, url: switch_path, :html => {:id => "switch-form"}) do |f| %>
+    <label class="switch" data-toggle="tooltip" data-placement="bottom" title="<%= t('titles.anonymous_msg') %>">
+        <input type="checkbox" id="cognito" <%= 'checked' if current_user.cognito %>>
+        <span class="slider round"></span>
+    </label>
+<% end %>
+<script type="text/javascript">
+    $('#cognito').on('click', function() {
+        $('#switch-form').submit();
+    });
+</script>

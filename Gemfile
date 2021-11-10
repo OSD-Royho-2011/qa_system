@@ -5,10 +5,22 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+# Use for image processing
+gem 'image_processing', '1.9.3'
+gem 'mini_magick', '4.9.5'
+# Use for Active Storage
+gem 'active_storage_validations', '0.8.2'
+# Use to resize image
+gem 'rmagick', '~> 4.1'
 # Use to hash password
 gem 'bcrypt', '3.1.13'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'
+# Use to generate fake data
+gem 'faker', '2.1.2'
+# Use to apply paginate
+gem 'will_paginate', '3.1.8'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

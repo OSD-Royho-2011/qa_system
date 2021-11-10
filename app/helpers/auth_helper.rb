@@ -1,4 +1,5 @@
 module AuthHelper
+    include QuestionsAction
 
     # Log in the given user.
     def log_in(user)
@@ -26,6 +27,21 @@ module AuthHelper
         end
     end
 
+    # Returns true if the given user is the current user.
+    def current_user?(user)
+        user && user == current_user
+    end
+
+    # Find user if anonymous question
+    def find_user(data)
+        user = User.find_by(id: decrypt(data))
+    end
+
+    # Check is owner question
+    def is_question_owner(data)
+        current_user?(data.user.present? ? data.user : find_user(data.private_token))
+    end
+
     # Returns true if the user is logged in, false otherwise.
     def logged_in?
         current_user.present?
@@ -41,6 +57,7 @@ module AuthHelper
     # Logs out the current user.
     def log_out
         forget(current_user)
+        current_user.update_cognito
         session.delete(:user_id)
         @current_user = nil
     end

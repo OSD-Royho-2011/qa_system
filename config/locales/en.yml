@@ -27,7 +27,7 @@ en:
     public: "Public"
     public_msg: "Everyone can see your information"
     anonymous: "Anonymous"
-    anonymous_msg: "Your information will be hidden"
+    anonymous_msg: "When you switch to anonymous mode, your information will be hidden"
     new_question: "New Question"
     question_list: "Question list"
     management: "Management"
@@ -57,6 +57,8 @@ en:
     email_sms: "Email & SMS"
     reset_password: "Reset Password"
     confirm_email: "Confirm Email"
+    edit_question: "Edit Question"
+    save_change: "Save Change"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -81,6 +83,7 @@ en:
     male: "Male"
     female: "Female"
     enter_email: "Enter email"
+    create_qa: "What is your question?"
   messages:
     enter_info: "Enter your email address and password to access admin panel."
     invalid_login_info: "Invalid email or password"
@@ -97,6 +100,16 @@ en:
     can_be_empty: "can't be empty"
     psw_has_reset: "Password has been reset."
     psw_reset_expired: "Password reset has expired."
+    post_success: "Your question has been uploaded and waiting for approving"
+    post_about: "posted a question about: "
+    ago: "ago"
+    question_deleted: "Your question has been deleted"
+    post_pending: "The requested question is waiting for approving"
+    post_failed: "Something went wrong, please try again!"
+    question_not_exist: "The requested question is not existed"
+    question_update: "Your question has been updated"
+    no_permission: "You don't have permission to access this page"
+    user_not_exist: "User does not exist"
   status:
     pending: "Pending"
     approved: "Approved"
@@ -112,6 +125,10 @@ en:
         email: "Email"
         password: "Password"
         password_confirmation: "Password confirmation"
+      question:
+        category: "Category/Kind of Question"
+        privacy: "Question Privacy"
+        image: "Choose file"
   mailer:
     activation: 'Account activation'
     activate: 'Activate'

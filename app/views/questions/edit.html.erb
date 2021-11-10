@@ -1,0 +1,51 @@
+<% provide(:title, t('titles.edit_question')) %>
+<div class="row">
+    <div class="col-sm-12">
+        <%= render 'shared/error_messages', object: @question %>
+        <div id="post-modal-data" class="iq-card iq-card-block iq-card-stretch iq-card-height">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title"><%= t('titles.edit_question') %></h4>
+                </div>
+            </div>
+                <div class="modal-body">
+                    <%= form_for(@question) do |f| %>
+                        <div class="d-flex align-items-center">
+                            <div class="user-img">
+                                <img src="<%= image_url('user/1.jpg') %>" alt="userimg" class="avatar-60 rounded-circle img-fluid">
+                            </div>
+                            <div class="post-text ml-3 w-100">
+                                <%= f.text_field :content, :required => true, class: 'form-control mb-0', placeholder: t('form.create_qa'), style: 'border:none;' %>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
+                            <li class="col-md-12 mb-3">
+                                <%= f.label :category %>
+                                <%= f.select :category_ids, options_from_collection_for_select(@categories, :id, :name, @question.category_ids), {}, {:multiple => true, :class => 'form-control'} %>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div>
+                            <%= f.label :image %>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: 'custom-file-input' %>
+                                    <%= f.label :image, class: "custom-file-label" %>
+                                </div>
+                            </div>
+                        </div>
+                        <% if @question.image.attached? %>
+                            <div class="user-post">
+                                <%= image_tag @question.display_image, class: "img-fluid rounded w-100" %>
+                            </div>
+                        <% end %>
+                        <hr>
+                        <%= f.submit t('titles.save_change'), class: "btn btn-primary d-block w-100 mt-3" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% parent_layout "layouts/base_layout" %>

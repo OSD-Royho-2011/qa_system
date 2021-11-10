@@ -1,0 +1,18 @@
+<li class="iq-unread" id="questionst-<%= question.id %>">
+    <div class="d-flex align-self-center">
+        <div class="iq-email-sender-info">
+            <div class="user-img img-fluid">
+                <img class="rounded-circle avatar-40" src="<%= question.private_token.present? ? image_url('user/anonymous.jpg') : image_url('user/01.jpg') %>" alt="">
+            </div>
+            <% if question.private_token.present? %>
+                <a href="javascript: void(0);" class="iq-email-title" ><%= t('title.anonymous') %></a>
+            <% else %>
+                <%= link_to question.user.name, question.user, class: "iq-email-title" %>
+            <% end %>
+        </div>
+        <div class="iq-email-content">
+            <%= link_to question.content, question, class: "iq-email-subject" %>
+            <div class="iq-email-date"><%= time_ago_in_words(question.created_at) %>&nbsp;<%= t('messages.ago') %></div>
+        </div>
+    </div>
+</li>

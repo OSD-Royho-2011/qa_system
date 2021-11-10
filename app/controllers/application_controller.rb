@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
-    include AuthHelper
+	include AuthHelper
 
-    private
-        # Confirms a logged-in user.
-        def logged_in_user
-            unless logged_in?
-                store_location
-                flash[:danger] = t('messages.pls_login')
-                redirect_to login_url
-            end
-        end
+	private
+		# Confirms a logged-in user.
+		def logged_in_user
+			unless logged_in?
+				store_location
+				redirect_to login_url
+			end
+		end
 end

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   post "/login", to: "auth#create"
   delete "/logout", to: "auth#destroy"
   get "/feeds", to: "questions#index"
-  get "/detail", to: "questions#detail"
   scope "admin" do
     get "/index", to: "admin#index"
     get "/management", to: "admin#management"
@@ -16,7 +15,9 @@ Rails.application.routes.draw do
   get "/recover-password", to: "password_resets#new"
   get "/change-password", to: "password_resets#edit"
   get "/confirm-email", to: "password_resets#confirm_email"
+  post "/switch", to: "users#switch_mode"
   resources :users
+  resources :questions
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 end

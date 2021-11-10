@@ -3,17 +3,19 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="<%= 'active' if current_page?(feeds_path) || current_page?(root_path) %>">
-                    <a href="<%= feeds_path %>" class="iq-waves-effect"><i class="fas fa-compass"></i><span><%= t('titles.feeds') %></span></a>
+                    <a href="<%= root_path %>" class="iq-waves-effect"><i class="fas fa-compass"></i><span><%= t('titles.feeds') %></span></a>
                 </li>
                 <li class="<%= 'active' if current_page?(profile_path) %>">
                     <a href="<%= profile_path %>" class="iq-waves-effect"><i class="fas fa-user"></i><span><%= t('titles.profile') %></span></a>
                 </li>
-                <li class="<%= 'active' if current_page?(index_path) %>">
-                    <a href="<%= index_path %>" class="iq-waves-effect"><i class="fas fa-clipboard-list"></i><span><%= t('titles.question_list') %></span></a>
-                </li>
-                <li class="<%= 'active' if current_page?(management_path) %>">
-                    <a href="<%= management_path %>" class="iq-waves-effect"><i class="fas fa-user-tag"></i><span><%= t('titles.management') %></span></a>
-                </li>
+                <% if current_user.admin? %>
+                    <li class="<%= 'active' if current_page?(index_path) %>">
+                        <a href="<%= index_path %>" class="iq-waves-effect"><i class="fas fa-clipboard-list"></i><span><%= t('titles.question_list') %></span></a>
+                    </li>
+                    <li class="<%= 'active' if current_page?(management_path) %>">
+                        <a href="<%= management_path %>" class="iq-waves-effect"><i class="fas fa-user-tag"></i><span><%= t('titles.management') %></span></a>
+                    </li>
+                <% end %>
             </ul>
         </nav>
         <div class="p-3"></div>

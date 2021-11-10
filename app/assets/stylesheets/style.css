@@ -607,10 +607,10 @@ div#post-modal-data .modal .modal-dialog { max-width: 100%; margin: 0; }
 .iq-email-sender-info .iq-checkbox-mail { cursor: pointer; height: 20px; width: 20px; margin-top: 4px; }
 .iq-email-sender-info .iq-star-toggle { color: var(--iq-dark-body-text); margin-left: 10px; font-size: 18px; }
 .iq-email-sender-info .iq-email-title { color: var(--iq-dark-body-text); position: absolute; top: 0; left: 85px; right: 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-bottom: 0; line-height: 62px; }
-.iq-email-content { position: absolute; top: 0; left: 300px; right: 0; bottom: 0; line-height: 62px; }
+.iq-email-content { position: absolute; top: 0; left: 200px; right: 0; bottom: 0; line-height: 62px; }
 .iq-email-content .iq-email-date, .iq-email-content .iq-email-subject { position: absolute; top: 0; }
 .iq-email-content .iq-email-subject { color: var(--iq-dark-body-text); left: 0; right: 110px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-.iq-email-content .iq-email-date { right: 20px; width: 100px; text-align: right; padding-left: 10px; color: var(--iq-dark-body-text); }
+.iq-email-content .iq-email-date { right: 20px; width: 300px; text-align: right; padding-left: 10px; color: var(--iq-dark-body-text); }
 .iq-email-sender-list .iq-social-media { position: absolute; line-height: 62px; right: -210px; top: 0; background: var(--iq-white); font-size: 18px; padding: 0 30px; transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; }
 .iq-email-listbox .iq-email-sender-list li:hover .iq-social-media { right: 0; }
 

@@ -1,0 +1,24 @@
+benifit:
+  name: Benifit
+  description: Something about benifit
+  created_at: <%= 10.minutes.ago %>
+
+working:
+  name: Working
+  description: Something about working
+  created_at: <%= 10.minutes.ago %>
+
+environment:
+  name: environment
+  description: Something about environment
+  created_at: <%= 10.minutes.ago %>
+
+love:
+  name: love
+  description: Something about love
+  created_at: <%= 10.minutes.ago %>
+
+other:
+  name: other
+  description: Something about other
+  created_at: <%= 10.minutes.ago %>
