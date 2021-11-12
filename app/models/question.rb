@@ -3,11 +3,9 @@ class Question < ApplicationRecord
   has_many :category_questions, :dependent => :delete_all
   has_many :categories, through: :category_questions, :dependent => :delete_all
   has_one_attached :image
+  has_many :actions
   enum status: {waiting: 0, approved: 1, closed: 2}
   default_scope -> { order(created_at: :desc) }
-  scope :where_waiting, -> { where(status: :waiting) }
-  scope :where_approved, -> { where(status: :approved) }
-  scope :where_closed, -> { where(status: :closed) }
   validates :content, presence: true
   validates :status, presence: true
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png], message: "must be a valid image format" },

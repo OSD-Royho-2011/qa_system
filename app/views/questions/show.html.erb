@@ -20,7 +20,7 @@
                             <p class="mb-0 d-inline-block"><%= t('messages.post_about') %>&nbsp;<%= @question.categories.pluck(:name).join('/') %></p>
                             <p class="mb-0 text-primary"><%= time_ago_in_words(@question.created_at) %> &nbsp;<%= t('messages.ago') %></p>
                         </div>
-                        <% if is_question_owner(@question) && @question.status == 'waiting'  %>
+                        <% if is_owner(@question) && @question.status == 'waiting'  %>
                             <div class="iq-card-post-toolbar">
                                 <div class="dropdown">
                                     <span class="dropdown-toggle" id="postdata-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
@@ -59,7 +59,11 @@
                         <%= image_tag @question.display_image, class: "img-fluid rounded w-100" %>
                     </div>
                 <% end %>
-                <%= render 'shared/comment_area' %>
+                <div class="comment-area mt-3">
+                    <%= render 'actions/action' %>
+                    <hr>
+                     <%= render 'comment' %>
+                </div>
             </div>
         </div>
     </div>
