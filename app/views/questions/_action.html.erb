@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between align-items-center">
+  <div class="like-block position-relative d-flex align-items-center">
+    <div class="d-flex align-items-center">
+      <div class="like-data">
+        <%= link_to like_question_path(@question), method: :put, remote: true do %>
+          <i class="fas fa-thumbs-up" id="icon-like" style="<%= 'color: green' if is_action_owner(@question).likable? %>"></i>
+        <% end %>
+      </div>
+      <div class="total-like-block ml-2 mr-3">
+        <span role="button" id="like-counter"><%= @question.actions.where_likable.count %></span>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+        <div class="like-data">
+          <%= link_to dislike_question_path(@question), method: :put, remote: true do %>
+            <i class="fas fa-thumbs-down" id="icon-dislike" style="<%= 'color: red' if is_action_owner(@question).dislikable? %>"></i>
+          <% end %>
+        </div>
+        <div class="total-like-block ml-2 mr-3">
+          <span role="button" id="dislike-counter"><%= @question.actions.where_dislikable.count %></span>
+        </div>
+    </div>
+    <div class="total-comment-block">
+        <div class="dropdown">
+            <span role="button"><%= pluralize(2, t('titles.comment')) %>
+        </div>
+    </div>
+  </div>
+</div>
