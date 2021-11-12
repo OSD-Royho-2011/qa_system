@@ -59,6 +59,9 @@ en:
     confirm_email: "Confirm Email"
     edit_question: "Edit Question"
     save_change: "Save Change"
+    edit: "Edit"
+    delete: "Delete"
+    close: "Close"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -84,6 +87,7 @@ en:
     female: "Female"
     enter_email: "Enter email"
     create_qa: "What is your question?"
+    your_comment: "Your comment..."
   messages:
     enter_info: "Enter your email address and password to access admin panel."
     invalid_login_info: "Invalid email or password"

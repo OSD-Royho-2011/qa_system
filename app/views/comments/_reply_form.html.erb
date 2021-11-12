@@ -1,0 +1,16 @@
+<div class="modal fade" id="reply-comment-<%= comment.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_for(Comment.new, method: :post, remote: true) do |f| %>
+          <div class="modal-body">
+            <%= hidden_field_tag :parent_id, comment.parent_id.present? ? comment.parent_id : comment.id %>
+            <%= f.text_area :content, :required => true, class: 'form-control', id: 'comment-data' %>
+          </div>
+          <div class="modal-footer" style="border-top: none;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('titles.close') %></button>
+            <%= f.submit t('titles.reply'), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

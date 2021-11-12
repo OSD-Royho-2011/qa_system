@@ -1,0 +1,4 @@
+$("#comment_content").val('');
+$(".modal-backdrop").hide();
+$("#comment-area").html("<%= escape_javascript(render @question.comments) %>");
+$("#comment-counter").html("<%= escape_javascript(pluralize(@question.comments.count, t('titles.comment'))) %>");

@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   has_many :categories, through: :category_questions, :dependent => :delete_all
   has_one_attached :image
   has_many :actions
+  has_many :comments
   enum status: {waiting: 0, approved: 1, closed: 2}
   default_scope -> { order(created_at: :desc) }
   validates :content, presence: true

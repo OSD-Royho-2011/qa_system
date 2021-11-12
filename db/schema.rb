@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_023138) do
+ActiveRecord::Schema.define(version: 2021_11_13_104307) do
 
   create_table "actions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(version: 2021_11_12_023138) do
     t.index ["question_id"], name: "index_category_questions_on_question_id"
   end
 
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "question_id", null: false
+    t.integer "parent_id"
+    t.string "private_token"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_comments_on_question_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "private_token"
     t.text "content"
@@ -106,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_11_12_023138) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "category_questions", "categories"
   add_foreign_key "category_questions", "questions"
+  add_foreign_key "comments", "questions"
+  add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "sub_categories", "categories"
 end

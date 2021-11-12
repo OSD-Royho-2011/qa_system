@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <div class="like-data">
         <%= link_to like_question_path, method: :put, remote: true do %>
-          <i class="fas fa-thumbs-up" id="icon-like" style="color: <%= 'green' if is_action_owner(@question.actions, 0) %>"></i>
+          <i class="fas fa-thumbs-up" id="icon-like" style="<%= 'color: green' if is_action_owner(@question.actions, 0) %>"></i>
         <% end %>
       </div>
       <div class="total-like-block ml-2 mr-3">
@@ -13,7 +13,7 @@
     <div class="d-flex align-items-center">
         <div class="like-data">
           <%= link_to dislike_question_path, method: :put, remote: true do %>
-            <i class="fas fa-thumbs-down" id="icon-dislike" style="color: <%= 'red' if is_action_owner(@question.actions, 1) %>"></i>
+            <i class="fas fa-thumbs-down" id="icon-dislike" style="<%= 'color: red' if is_action_owner(@question.actions, 1) %>"></i>
           <% end %>
         </div>
         <div class="total-like-block ml-2 mr-3">
@@ -22,7 +22,7 @@
     </div>
     <div class="total-comment-block">
         <div class="dropdown">
-            <span role="button"><%= pluralize(2, t('titles.comment')) %>
+            <span role="button" id="comment-counter"><%= pluralize(@question.comments.count, t('titles.comment')) %>
         </div>
     </div>
   </div>

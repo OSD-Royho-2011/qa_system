@@ -4,13 +4,14 @@ class QuestionsController < ApplicationController
   before_action :load_question, except: [:index, :create]
   before_action :load_category, only: [:index, :edit]
   before_action :build_question, only: [:index]
+  before_action :build_comment, only: [:show]
 
   def index
     @questions = Question.approved
   end
 
   def create
-    if current_user.cognito
+    if current_user.cognito?
       @question = Question.new(question_params)
       @question.private_token = encrypt(current_user.id)
     else
@@ -20,14 +21,10 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    if @question.waiting? && is_question_owner(@question)
-      @question
-    elsif @question.approved?
-      @question
-    else
-      flash[:warning] = t('messages.no_permission')
-      redirect_to root_url
-    end
+    return @question if @question.waiting? && is_owner(@question)
+    return @question if @question.approved?
+    flash[:warning] = t('messages.no_permission')
+    redirect_to root_url
   end
 
   def edit; end
@@ -77,5 +74,9 @@ class QuestionsController < ApplicationController
 
     def build_question
       @question = Question.new
+    end
+
+    def build_comment
+      @comment = Comment.new
     end
 end

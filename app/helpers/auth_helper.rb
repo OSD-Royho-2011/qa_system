@@ -38,7 +38,7 @@ module AuthHelper
   end
 
   # Check is owner question
-  def is_question_owner(data)
+  def is_owner(data)
     current_user?(data.user.present? ? data.user : find_user(data.private_token))
   end
 

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       put "like", to: "actions#like"
       put "dislike", to: "actions#dislike"
+      resources :comments, only: [:create, :update, :destroy]
     end
   end
   resources :account_activations, only: [:edit]
