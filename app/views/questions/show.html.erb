@@ -59,7 +59,11 @@
                         <%= image_tag @question.display_image, class: "img-fluid rounded w-100" %>
                     </div>
                 <% end %>
-                <%= render 'shared/comment_area' %>
+                <div class="comment-area mt-3">
+                    <%= render 'actions/action' %>
+                    <hr>
+                     <%= render 'comment' %>
+                </div>
             </div>
         </div>
     </div>

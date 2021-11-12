@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   get "/confirm-email", to: "password_resets#confirm_email"
   post "/switch", to: "users#switch_mode"
   resources :users
-  resources :questions
+  resources :questions do
+    member do
+      put "like", to: "actions#like"
+      put "dislike", to: "actions#dislike"
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 end

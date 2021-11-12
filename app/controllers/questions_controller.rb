@@ -1,82 +1,81 @@
 class QuestionsController < ApplicationController
-	include QuestionsAction
-	before_action :logged_in_user
-	before_action :load_question, except: [:index, :create]
-	before_action :load_category, only: [:index, :edit]
-	before_action :build_question, only: [:index]
+  include QuestionsAction
+  before_action :logged_in_user
+  before_action :load_question, except: [:index, :create]
+  before_action :load_category, only: [:index, :edit]
+  before_action :build_question, only: [:index]
 
-	def index
-		@questions = Question.where_approved
-	end
+  def index
+    @questions = Question.approved
+  end
 
-	def create
-		if current_user.cognito
-			@question = Question.new(question_params)
-			@question.private_token = encrypt(current_user.id)
-		else
-			@question = current_user.questions.build(question_params)
-		end
-		store_question(@question)
-	end
+  def create
+    if current_user.cognito
+      @question = Question.new(question_params)
+      @question.private_token = encrypt(current_user.id)
+    else
+      @question = current_user.questions.build(question_params)
+    end
+    store_question(@question)
+  end
 
-	def show
-		status = @question.status
-		if status == 'waiting' && is_question_owner(@question)
-			@question
-		elsif status == 'approved'
-			@question
-		else
-			flash[:warning] = t('messages.no_permission')
-			redirect_to root_url
-		end
-	end
+  def show
+    if @question.waiting? && is_question_owner(@question)
+      @question
+    elsif @question.approved?
+      @question
+    else
+      flash[:warning] = t('messages.no_permission')
+      redirect_to root_url
+    end
+  end
 
-	def edit; end
+  def edit; end
 
-	def update
-		if @question.update(question_params)
-			flash[:success] = t('messages.question_update')
-			redirect_to @question
-		else
-			render :edit
-		end
-	end
+  def update
+    if @question.update(question_params)
+      flash[:success] = t('messages.question_update')
+      redirect_to @question
+    else
+      render :edit
+    end
+  end
 
-	def destroy
-		@question.destroy
-		flash[:primary] = t('messages.question_deleted')
-		redirect_to root_url
-	end
+  def destroy
+    @question.destroy
+    flash[:primary] = t('messages.question_deleted')
+    redirect_to root_url
+  end
 
-	private
-		def question_params
-				params.require(:question).permit(:content, {:category_ids => []}, :image)
-		end
+  private
+    def question_params
+      params.require(:question).permit(:content, {:category_ids => []}, :image)
+    end
 
-		# Store question and redirect to preview mode
-		def store_question(question)
-			@question.image.attach(params[:question][:image])
-			if question.save
-				flash[:primary] = t('messages.post_success')
-				redirect_to question
-			else
-				flash[:danger] = t('messages.post_failed')
-				redirect_to root_path
-			end
-		end
+    # Store question and redirect to preview mode
+    def store_question(question)
+      @question.image.attach(params[:question][:image])
+      if question.save
+        flash[:primary] = t('messages.post_success')
+        redirect_to question
+      else
+        flash[:danger] = t('messages.post_failed')
+        redirect_to root_path
+      end
+    end
 
-		def load_question
-			@question = Question.find_by(id: params[:id])
-			return if @question.present?
-			flash[:danger] = t('messages.question_not_exist')
-			redirect_to root_url
-		end
+    def load_question
+      @question = Question.find_by(id: params[:id])
+      return if @question.present?
+      flash[:danger] = t('messages.question_not_exist')
+      redirect_to root_url
+    end
 
-		def load_category
-			@categories = Category.all
-		end
+    def load_category
+      @categories = Category.all
+    end
 
-		def build_question
-			@question = Question.new
-		end
+    def build_question
+      @question = Question.new
+    end
 end

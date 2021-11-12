@@ -7,7 +7,7 @@
             <% if question.private_token.present? %>
                 <a href="javascript: void(0);" class="iq-email-title" ><%= t('title.anonymous') %></a>
             <% else %>
-                <%= link_to question.user.name, question.user, class: "iq-email-title" %>
+                <%= link_to question.user.name, question, class: "iq-email-title" %>
             <% end %>
         </div>
         <div class="iq-email-content">
