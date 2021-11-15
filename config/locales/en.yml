@@ -62,6 +62,8 @@ en:
     edit: "Edit"
     delete: "Delete"
     close: "Close"
+    category: "Question category"
+    category_table: "Question category table"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -88,6 +90,11 @@ en:
     enter_email: "Enter email"
     create_qa: "What is your question?"
     your_comment: "Your comment..."
+    category_name: "Category name"
+    category_desciption: "Description"
+    action: "Actions"
+    category_name_plh: "Category name..."
+    category_description_plh: "Description..."
   messages:
     enter_info: "Enter your email address and password to access admin panel."
     invalid_login_info: "Invalid email or password"
@@ -114,6 +121,14 @@ en:
     question_update: "Your question has been updated"
     no_permission: "You don't have permission to access this page"
     user_not_exist: "User does not exist"
+    approve_msg: "The question has been approved"
+    close_msg: "The question has been closed"
+    no_question: "No %{status} questions yet!"
+    approve_question: "Approve this question"
+    close_question: "Close this question"
+    add_category_success: "New category has been created successfully"
+    update_category_success: "Category has been updated successfully"
+    delete_category_success: "Category has been delete successfully"
   status:
     pending: "Pending"
     approved: "Approved"
@@ -122,6 +137,10 @@ en:
     submit: "Submit"
     cancel: "Cancel"
     back_to_login: "Back To Login"
+    new: "New"
+    save: "Save"
+    delete: "Delete"
+    add: "Add"
   activerecord:
     attributes:
       user:

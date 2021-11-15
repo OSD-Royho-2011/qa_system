@@ -1,0 +1,15 @@
+<%= form_for(@category) do |f| %>
+  <td contenteditable="true" width="25%">
+    <%= f.text_field :name, :required => true, class: "form-control rounded", placeholder: t('form.category_name_plh') %>
+  </td>
+  <td contenteditable="true" width="55%">
+    <%= f.text_field :description, class: "form-control rounded", placeholder: t('form.category_description_plh') %>
+  </td>
+  <td width="20%">
+    <span class="table-add">
+      <%= button_tag(:class => "btn btn-sm iq-bg-success btn-custom btn-add-new") do %>
+        <i class="fas fa-plus"><span class="pl-1 add-btn"><%= t('button.add') %></span></i>
+      <% end %>
+    </span>
+  </td>
+<% end %>

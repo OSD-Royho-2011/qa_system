@@ -19,7 +19,7 @@
                     <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
                         <li class="col-md-12 mb-3">
                             <%= f.label :category %>
-                            <%= f.select :category_ids, options_from_collection_for_select(@categories, :id, :name), {}, {:multiple => true, :class => 'form-control'} %>
+                            <%= f.select :category_ids, options_from_collection_for_select(@categories, :id, :name), {}, {:multiple => true, :required => true, :class => 'form-control'} %>
                         </li>
                     </ul>
                     <hr>

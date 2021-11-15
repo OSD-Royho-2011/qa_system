@@ -15,6 +15,9 @@
                     <li class="<%= 'active' if current_page?(management_path) %>">
                         <a href="<%= management_path %>" class="iq-waves-effect"><i class="fas fa-user-tag"></i><span><%= t('titles.management') %></span></a>
                     </li>
+                    <li class="<%= 'active' if current_page?(categories_path) %>">
+                        <a href="<%= categories_path %>" class="iq-waves-effect"><i class="fas fa-boxes"></i><span><%= t('titles.category') %></span></a>
+                    </li>
                 <% end %>
             </ul>
         </nav>

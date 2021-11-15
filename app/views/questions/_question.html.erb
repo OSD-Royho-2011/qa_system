@@ -5,7 +5,7 @@
                 <img class="rounded-circle avatar-40" src="<%= question.private_token.present? ? image_url('user/anonymous.jpg') : image_url('user/01.jpg') %>" alt="">
             </div>
             <% if question.private_token.present? %>
-                <a href="javascript: void(0);" class="iq-email-title" ><%= t('title.anonymous') %></a>
+                <%= link_to t('title.anonymous'), question, class: "iq-email-title" %>
             <% else %>
                 <%= link_to question.user.name, question, class: "iq-email-title" %>
             <% end %>
@@ -14,5 +14,19 @@
             <%= link_to question.content, question, class: "iq-email-subject" %>
             <div class="iq-email-date"><%= time_ago_in_words(question.created_at) %>&nbsp;<%= t('messages.ago') %></div>
         </div>
+        <% if current_user.admin? && question.waiting? %>
+            <ul class="iq-social-media">
+                <li data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.approve_question') %>">
+                    <%= link_to approve_question_path(question.id), method: :put do %>
+                        <i class="fas fa-check"></i>
+                    <% end %>
+                </li>
+                <li data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.close_question') %>">
+                    <%= link_to close_question_path(question.id), method: :put do %>
+                        <i class="fas fa-times-circle"></i>
+                    <% end %>
+                </li>
+            </ul>
+        <% end %>
     </div>
 </li>

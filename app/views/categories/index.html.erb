@@ -1,0 +1,32 @@
+<% provide(:title, t('titles.category')) %>
+<div class="row">
+  <div class="col-sm-12">
+    <%= render 'shared/error_messages', object: @category %>
+    <%= render 'shared/flash_message' %>
+    <div class="iq-card">
+      <div class="iq-card-header d-flex justify-content-between">
+          <div class="iq-header-title">
+            <h4 class="card-title"><%= t('titles.category_table') %></h4>
+          </div>
+      </div>
+      <div class="iq-card-body">
+          <div id="table" class="table-editable">
+            <table class="table table-borderless table-responsive-md table-striped">
+                <thead>
+                  <tr>
+                      <th width="25%"><%= t('form.category_name') %></th>
+                      <th width="55%"><%= t('form.category_desciption') %></th>
+                      <th width="20%"><%= t('form.action') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render 'category_form' %>
+                  <%= render @categories %>
+                </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+<% parent_layout "layouts/base_layout" %>

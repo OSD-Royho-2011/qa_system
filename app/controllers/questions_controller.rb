@@ -21,6 +21,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    return @question if current_user.admin?
     return @question if @question.waiting? && is_owner(@question)
     return @question if @question.approved?
     flash[:warning] = t('messages.no_permission')

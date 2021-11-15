@@ -1,25 +1,22 @@
 <% provide(:title, t('titles.question_list')) %>
 <div class="row">
     <div class="col-sm-12">
-        <div id="post-modal-data" class="iq-card iq-card-block iq-card-stretch iq-card-height">
-            <%= render 'question_modal' %>
-        </div>
+        <%= render 'shared/flash_message' %>
     </div>
     <div class="col-lg-3">
         <div class="iq-card">
             <div class="iq-card-body">
                 <div class="">
                     <div class="iq-email-list">
-                        <button class="btn btn-primary btn-lg btn-block mb-3 font-size-16 p-3" data-toggle="modal" data-target="#post-modal"><i class="fas fa-plus-circle"></i><%= t('titles.new_question') %></button>
                         <div class="iq-email-ui nav flex-column nav-pills">
                             <li class="nav-link active" role="tab" data-toggle="pill" href="#question-pending">
-                                <a href="#"><i class="fas fa-tasks"></i><%= t('status.pending') %><span class="badge badge-warning ml-2">4</span></a>
+                                <a href="#"><i class="fas fa-tasks"></i><%= t('status.pending') %><span class="badge badge-warning ml-2"><%= @questions.waiting.count %></span></a>
                             </li>
                             <li class="nav-link" role="tab" data-toggle="pill" href="#question-approved">
-                                <a href="#"><i class="fas fa-clipboard-check"></i><%= t('status.approved') %><span class="badge badge-danger ml-2">45</span></a>
+                                <a href="#"><i class="fas fa-clipboard-check"></i><%= t('status.approved') %><span class="badge badge-danger ml-2"><%= @questions.approved.count %></span></a>
                             </li>
                             <li class="nav-link" role="tab" data-toggle="pill" href="#question-closed">
-                                <a href="#"><i class="fas fa-times-circle"></i><%= t('status.closed') %><span class="badge badge-dark ml-2">10</span></a>
+                                <a href="#"><i class="fas fa-times-circle"></i><%= t('status.closed') %><span class="badge badge-dark ml-2"><%= @questions.closed.count %></span></a>
                             </li>
                         </div>
                     </div>
@@ -31,12 +28,12 @@
         <div class="iq-card">
             <div class="iq-card-body p-0">
                 <div class="">
-                    <div class="iq-email-to-list p-3">
+                    <div class="iq-email-to-list p-3" style="overflow-x: unset;">
                         <div class="d-flex justify-content-between"><%= t('titles.question_list') %></div>
                     </div>
                     <div class="iq-email-listbox">
                         <div class="tab-content">
-                            <%= render 'question_list' %>
+                            <%= render 'admin/question_list' %>
                         </div>
                     </div>
                 </div>

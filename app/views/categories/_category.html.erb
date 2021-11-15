@@ -1,0 +1,18 @@
+<tr>
+  <%= form_for(category) do |f| %>
+    <td contenteditable="true" width="25%">
+      <%= f.text_field :name, :required => true, class: "form-control rounded" %>
+    </td>
+    <td contenteditable="true" width="55%">
+      <%= f.text_field :description, class: "form-control rounded" %>
+    </td>
+    <td width="20%">
+      <span class="table-remove">
+        <%= f.submit t('button.save'), class: "btn iq-bg-warning btn-rounded btn-sm my-0 btn-custom" %>
+      </span>
+      <span class="table-remove">
+        <%= button_to t('button.delete'), category, :class => "btn iq-bg-danger btn-rounded btn-sm my-0 btn-custom", :method => :delete %>
+      </span>
+    </td>
+  <% end %>
+</tr>

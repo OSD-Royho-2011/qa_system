@@ -23,19 +23,21 @@
         </div>
     </div>
     <div class="col-sm-12">
-        <div class="iq-card">
-            <div class="iq-card-body p-0">
-                <div class="iq-email-listbox">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" role="tabpanel">
-                            <ul class="iq-email-sender-list">
-                                <%= render @questions %>
-                            </ul>
+        <% if @questions.any? %>
+            <div class="iq-card">
+                <div class="iq-card-body p-0">
+                    <div class="iq-email-listbox">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" role="tabpanel">
+                                <ul class="iq-email-sender-list">
+                                    <%= render @questions %>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <% end %>
     </div>
 </div>
 <% parent_layout "layouts/base_layout" %>

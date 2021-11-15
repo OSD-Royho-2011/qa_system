@@ -6,6 +6,11 @@
             <div class="iq-card-body">
                 <div class="user-post-data">
                     <div class="d-flex flex-wrap">
+                        <div class="mr-3 mt-2">
+                            <a href="javascript: void(0);" id="btn-back">
+                                <h3 class="m-0"><i class="fas fa-chevron-left"></i></h3>
+                            </a>
+                        </div>
                         <div class="media-support-user-img mr-3">
                             <img class="rounded-circle img-fluid" src="<%= @question.private_token.present? ? image_url('user/anonymous.jpg') : image_url('user/01.jpg') %>" alt="">
                         </div>
@@ -20,6 +25,18 @@
                             <p class="mb-0 d-inline-block"><%= t('messages.post_about') %>&nbsp;<%= @question.categories.pluck(:name).join('/') %></p>
                             <p class="mb-0 text-primary"><%= time_ago_in_words(@question.created_at) %> &nbsp;<%= t('messages.ago') %></p>
                         </div>
+                        <% if current_user.admin? && @question.waiting? %>
+                            <div class="mr-3 mt-2 question-action" data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.approve_question') %>">
+                                <%= link_to approve_question_path, method: :put do %>
+                                    <h4 class="m-0"><i class="fas fa-check"></i></h4>
+                                <% end %>
+                            </div>
+                            <div class="mr-3 mt-2 question-action" data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.close_question') %>">
+                                <%= link_to close_question_path, method: :put do %>
+                                    <h4 class="m-0"><i class="fas fa-times-circle"></i></h4>
+                                <% end %>
+                            </div>
+                         <% end %>
                         <% if is_owner(@question) && @question.waiting?  %>
                             <div class="iq-card-post-toolbar">
                                 <div class="dropdown">
@@ -59,14 +76,16 @@
                         <%= image_tag @question.display_image, class: "img-fluid rounded w-100" %>
                     </div>
                 <% end %>
-                <div class="comment-area mt-3">
-                    <%= render 'actions/action' %>
-                    <hr>
-                    <ul class="post-comments p-0 m-0" id="comment-area">
-                        <%= render @question.comments %>
-                    </ul>
-                    <%= render 'comments/comment_form' %>
-                </div>
+                <% if !@question.closed? %>
+                    <div class="comment-area mt-3">
+                        <%= render 'actions/action' %>
+                        <hr>
+                        <ul class="post-comments p-0 m-0" id="comment-area">
+                            <%= render @question.comments %>
+                        </ul>
+                        <%= render 'comments/comment_form' %>
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>
@@ -77,5 +96,8 @@
         $('html, body').animate({
             scrollTop: $("#question-content").offset().top
         }, 1000);
+    });
+    $(document).on('click','#btn-back', function(){
+        window.history.back();
     });
 </script>
