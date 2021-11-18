@@ -16,7 +16,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-list">
-                    <% if !current_user.admin? %>
+                    <% if !current_user.super_admin? %>
                         <li class="mode-title">
                             <%= t('titles.anonymous') %>
                         </li>

@@ -1,0 +1,8 @@
+<tr>
+    <td width="25%"><%= role.name %></td>
+    <td width="55%"><%= role.description %></td>
+    <td width="20%">
+      <%= link_to t('button.view'), role, class: 'btn btn-warning rounded btn-custom btn-role', type: 'button' %>
+      <%= link_to t('button.delete'), role, class: 'btn btn-danger rounded btn-custom btn-role', type: 'button', :method => :delete %>
+    </td>
+</tr>

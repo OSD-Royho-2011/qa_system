@@ -25,7 +25,7 @@
                             <p class="mb-0 d-inline-block"><%= t('messages.post_about') %>&nbsp;<%= @question.categories.pluck(:name).join('/') %></p>
                             <p class="mb-0 text-primary"><%= time_ago_in_words(@question.created_at) %> &nbsp;<%= t('messages.ago') %></p>
                         </div>
-                        <% if current_user.admin? && @question.waiting? %>
+                        <% if (current_user.super_admin? || current_user.manager?) && @question.waiting? %>
                             <div class="mr-3 mt-2 question-action" data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.approve_question') %>">
                                 <%= link_to approve_question_path, method: :put do %>
                                     <h4 class="m-0"><i class="fas fa-check"></i></h4>

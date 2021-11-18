@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-	before_action :logged_in_user, only: [:show, :edit, :destroy, :profile, :setting]
+	before_action :logged_in_user, except: [:new, :create]
+	load_and_authorize_resource :except => [:new, :create]
+  before_action :load_permissions, except: [:new, :create]
 	
 	def show; end
 
@@ -9,6 +11,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
+		@user.role = Role.find_by(name: "Member")
 		if @user.save
 			@user.send_activation_email
 			flash[:secondary] = t('messages.check_email')

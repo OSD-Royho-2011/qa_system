@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_104307) do
+ActiveRecord::Schema.define(version: 2021_11_18_055707) do
 
   create_table "actions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -76,6 +76,24 @@ ActiveRecord::Schema.define(version: 2021_11_13_104307) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "permissions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "subject_class"
+    t.string "action"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "permissions_roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "permission_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
+    t.index ["role_id"], name: "index_permissions_roles_on_role_id"
+  end
+
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "private_token"
     t.text "content"
@@ -85,6 +103,13 @@ ActiveRecord::Schema.define(version: 2021_11_13_104307) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
   end
 
   create_table "sub_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -108,8 +133,9 @@ ActiveRecord::Schema.define(version: 2021_11_13_104307) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean "admin"
     t.boolean "cognito", default: false
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "actions", "questions"
@@ -120,6 +146,9 @@ ActiveRecord::Schema.define(version: 2021_11_13_104307) do
   add_foreign_key "category_questions", "questions"
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
   add_foreign_key "questions", "users"
   add_foreign_key "sub_categories", "categories"
+  add_foreign_key "users", "roles"
 end

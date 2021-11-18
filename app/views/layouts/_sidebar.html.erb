@@ -8,15 +8,20 @@
                 <li class="<%= 'active' if current_page?(profile_path) %>">
                     <a href="<%= profile_path %>" class="iq-waves-effect"><i class="fas fa-user"></i><span><%= t('titles.profile') %></span></a>
                 </li>
-                <% if current_user.admin? %>
+                <% if current_user.super_admin? || current_user.manager? %>
                     <li class="<%= 'active' if current_page?(index_path) %>">
                         <a href="<%= index_path %>" class="iq-waves-effect"><i class="fas fa-clipboard-list"></i><span><%= t('titles.question_list') %></span></a>
                     </li>
-                    <li class="<%= 'active' if current_page?(management_path) %>">
-                        <a href="<%= management_path %>" class="iq-waves-effect"><i class="fas fa-user-tag"></i><span><%= t('titles.management') %></span></a>
+                <% end %>
+                <% if current_user.super_admin? %>
+                    <li class="<%= 'active' if current_page?(user_management_path) %>">
+                        <a href="<%= user_management_path %>" class="iq-waves-effect"><i class="fas fa-user-tag"></i><span><%= t('titles.management') %></span></a>
                     </li>
                     <li class="<%= 'active' if current_page?(categories_path) %>">
                         <a href="<%= categories_path %>" class="iq-waves-effect"><i class="fas fa-boxes"></i><span><%= t('titles.category') %></span></a>
+                    </li>
+                    <li class="<%= 'active' if current_page?(roles_path) %>">
+                        <a href="<%= roles_path %>" class="iq-waves-effect"><i class="fas fa-user-shield"></i><span><%= t('titles.role_management') %></span></a>
                     </li>
                 <% end %>
             </ul>

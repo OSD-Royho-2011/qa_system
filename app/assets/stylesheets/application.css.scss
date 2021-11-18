@@ -106,9 +106,23 @@
 
 .btn-custom {
     height: 44px;
-    width: 65px;
 }
 
 .btn-add-new {
     width: 130px;
+}
+
+.custom-input {
+    width: 10rem !important;
+    height: 44px !important;
+}
+
+.custom-badge {
+    height: 40px;
+    width: 10rem;
+    margin-left: -29px;
+}
+
+.btn-role {
+    padding-top: 10.5px!important;
 }

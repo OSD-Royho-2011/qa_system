@@ -1,4 +1,8 @@
 en:
+  read: "read"
+  create: "read"
+  edit: "edit"
+  delete: "delete"
   titles:
     base_title: "Q&A System"
     signin: "Sign in"
@@ -30,7 +34,8 @@ en:
     anonymous_msg: "When you switch to anonymous mode, your information will be hidden"
     new_question: "New Question"
     question_list: "Question list"
-    management: "Management"
+    management: "User management"
+    role_management: "Role management"
     user_list: "User list"
     edit_role: "Edit Role"
     ban: "Ban"
@@ -64,6 +69,8 @@ en:
     close: "Close"
     category: "Question category"
     category_table: "Question category table"
+    joined_on: "Joined on"
+    role: "%{role} role"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -95,6 +102,13 @@ en:
     action: "Actions"
     category_name_plh: "Category name..."
     category_description_plh: "Description..."
+    role_name: "Role name"
+    role_desciption: "Role description"
+    role_name_plh: "Role name..."
+    role_description_plh: "Description..."
+    subject_class: "Class"
+    permission_action: "Actions"
+    description: "Description"
   messages:
     enter_info: "Enter your email address and password to access admin panel."
     invalid_login_info: "Invalid email or password"
@@ -129,6 +143,18 @@ en:
     add_category_success: "New category has been created successfully"
     update_category_success: "Category has been updated successfully"
     delete_category_success: "Category has been delete successfully"
+    access_denied: "Access denied. You are not authorized to access the requested page."
+    update_role_succes: "User has been updated successfully"
+    role_has_no_permission: "The %{role} role has no permissions yet!"
+    add_role_success: "New role has been created successfully"
+    update_role_success: "The %{role} role has been updated successfully"
+    delete_role_success: "The %{role} role has been delete successfully"
+    cannot_delete_role: "Cannot delet %{role} role, please try again!"
+    add_permission_success: "New permission has been created successfully"
+    delete_permission_success: "Permission has been delete successfully"
+    comment_not_exist: "The requested comment is not existed"
+    category_not_exist: "The requested category is not existed"
+    role_not_exist: "The requested role is not existed"
   status:
     pending: "Pending"
     approved: "Approved"
@@ -141,6 +167,8 @@ en:
     save: "Save"
     delete: "Delete"
     add: "Add"
+    edit: "Edit"
+    view: "View"
   activerecord:
     attributes:
       user:

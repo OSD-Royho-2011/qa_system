@@ -3,8 +3,10 @@ class User < ApplicationRecord
   has_many :questions
   has_many :actions
   has_many :comments
+  belongs_to :role
   before_save   :downcase_email
   before_create :create_activation_digest
+  scope :where_not_admin, -> { where('role_id != ?', Role.find_by_name("Super Admin").id) }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -72,6 +74,16 @@ class User < ApplicationRecord
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Check is super admin
+  def super_admin?
+    self.role.name == "Super Admin"
+  end
+
+  # Check is super admin
+  def manager?
+    self.role.name == "Manager"
   end
 
   private

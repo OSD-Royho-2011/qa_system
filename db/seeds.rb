@@ -1,12 +1,12 @@
 # Create admin user.
 User.create!(
-    name: "UiCA",
-    email: "uica@gmail.com",
+    name: "Manager",
+    email: "manager@gmail.com",
     password: "@bc12354",
     password_confirmation: "@bc12354",
-    admin: true,
     activated: true,
-    activated_at: Time.zone.now
+    activated_at: Time.zone.now,
+    role: Role.find_by_name("Member")
 )
 
 # Create member user.
@@ -16,21 +16,9 @@ dean = User.create!(
     password: "@bc12354",
     password_confirmation: "@bc12354",
     activated: true,
-    activated_at: Time.zone.now
+    activated_at: Time.zone.now,
+    role: Role.find_by_name("Member")
 )
-
-# Generate a bunch of additional users.
-10.times do |n|
-    name = Faker::Name.name
-    email = "example-#{n+1}@gmail.com"
-    password = "password"
-    User.create!(name: name,
-                email: email,
-                password: password,
-                password_confirmation: password,
-                activated: true,
-                activated_at: Time.zone.now)
-end
 
 # Create category & its sub-category.
 Category.create(

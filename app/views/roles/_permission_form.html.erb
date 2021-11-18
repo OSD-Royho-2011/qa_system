@@ -1,0 +1,47 @@
+<tr>
+  <%= form_with url: new_role_permission_path do |f| %>
+    <%= hidden_field_tag :id, @role.id %>
+    <td width="40%">
+      <select class="form-control mt-4" name="class" id="class" required>
+        <option selected disabled>Select class</option>
+        <% @role_permissions.each do |key, value| %>
+          <option value="<%= key %>"><%= key %></option>
+        <% end %>
+      </select>
+    </td>
+    <td width="40%">
+      <select class="form-control" name="permissions[]" id="permissions" multiple required>
+      </select>
+    </td>
+    <td width="20%">
+      <span class="table-add">
+        <%= f.submit t('button.add'), class: "mr-3 btn btn-dark rounded btn-custom btn-add-new mt-4" %>
+      </span>
+    </td>
+  <% end %>
+</tr>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#class').change(function() {
+      $("#permissions").empty();
+      $.ajax({
+        url: "<%= load_action_path %>",
+        type: 'GET',
+        data: {
+          subject_class: $("#class").val()
+        },
+        async: true,
+        dataType: "json",
+        error: function(error){
+          console.error('Error: ' + status + error);
+        },
+        success: function(response){
+          var actions = response["actions"];
+          for(var i=0; i< actions.length; i++){
+            $("#permissions").append('<option value="' + actions[i]["id"] + '">' + actions[i]["action"] + '</option>');
+          }
+        }
+      });
+    });
+  });
+</script>

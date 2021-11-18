@@ -1,0 +1,17 @@
+<% permissions.each do |key, permission| %>
+  <% permission.each do |value| %>
+    <tr>
+      <% if permission.index(value) == 0 %>
+        <td rowspan="<%= permissions[key].count %>"><%= key %></td>
+      <% end %>
+      <td><%= value.action %></td>
+      <td>
+        <%= form_with url: delete_permission_path do |f| %>
+          <%= hidden_field_tag :id, @role.id %>
+          <%= hidden_field_tag :permission_id, value.id %>
+          <%= f.submit t('button.delete'), class: 'btn btn-danger rounded btn-custom btn-add-new' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :logged_in_user
+  load_and_authorize_resource
+  before_action :load_permissions
   before_action :build_category, only: [:index]
   before_action :load_category, except: [:index, :create]
 
@@ -34,6 +36,9 @@ class CategoriesController < ApplicationController
 
     def load_category
       @category = Category.find(params[:id])
+      return if @category.present?
+      flash[:danger] = t('messages.category_not_exist')
+      redirect_to categories_path
     end
 
 end

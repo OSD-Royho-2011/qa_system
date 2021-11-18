@@ -1,0 +1,50 @@
+<li class="d-flex align-items-center">
+  <div class="user-img img-fluid">
+      <img src="<%= image_url('user/05.jpg') %>" alt="story-img" class="rounded-circle avatar-40">
+  </div>
+  <div class="media-support-info ml-3">
+      <h6><%= user.name %></h6>
+      <p class="mb-0"><%= t('titles.joined_on') %> <%= user.created_at.strftime("%B %d, %Y") %></p>
+  </div>
+  <div class="media-support-info ml-3" id="user-role-<%= user.id %>">
+    <% if user.role.name == "Member" %>
+      <button type="button" class="btn mb-1 btn-outline-danger custom-badge">
+    <% else %>
+      <button type="button" class="btn mb-1 btn-outline-success custom-badge">
+    <% end %>
+      <%= user.role.name %>
+    </button>
+  </div>
+  <div class="media-support-info ml-3" id="edit-user-<%= user.id %>" style="display: none;">
+    <%= form_for(:user, url: edit_role_path, :html => {:id => "edit-form-#{user.id}"}) do |f| %>
+      <%= hidden_field_tag :id, user.id %>
+      <%= f.select :role_id, options_from_collection_for_select(@roles, :id, :name, user.role_id), {}, {:required => true, :class => 'form-control custom-input'} %>
+    <% end %>
+  </div>
+  <div class="d-flex align-items-center">
+    <button type="button" class="mr-3 btn btn-dark rounded" id="btn-edit-<%= user.id %>"><%= t('titles.edit_role') %></button>
+    <button type="button" class="mr-3 btn btn-primary rounded" id="btn-save-<%= user.id %>" style="display: none;"><%= t('button.save') %></button>
+    <button type="button" class="mr-3 btn btn-danger rounded" id="btn-cancel-<%= user.id %>" style="display: none;"><%= t('button.cancel') %></button>
+  </div>
+</li>
+<script type="text/javascript">
+  $('#btn-edit-<%= user.id %>').on('click', function() {
+    $('#btn-edit-<%= user.id %>').hide();
+    $('#user-role-<%= user.id %>').hide();
+    $('#btn-save-<%= user.id %>').show();
+    $('#btn-cancel-<%= user.id %>').show();
+    $('#edit-user-<%= user.id %>').show();
+  });
+
+  $('#btn-cancel-<%= user.id %>').on('click', function() {
+    $('#btn-edit-<%= user.id %>').show();
+    $('#user-role-<%= user.id %>').show();
+    $('#btn-save-<%= user.id %>').hide();
+    $('#btn-cancel-<%= user.id %>').hide();
+    $('#edit-user-<%= user.id %>').hide();
+  });
+
+  $('#btn-save-<%= user.id %>').on('click', function() {
+    $('#edit-form-<%= user.id %>').submit();
+  });
+</script>

@@ -16,4 +16,12 @@ class Question < ApplicationRecord
   def display_image
     image.variant(resize_to_limit: [500, 500])
   end
+
+  def change_to_approved
+    update_attribute(:status, :approved)
+  end
+
+  def change_to_closed
+    update_attribute(:status, :closed)
+  end
 end

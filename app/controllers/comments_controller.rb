@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
+  load_and_authorize_resource
+  before_action :load_permissions
   before_action :load_question, only: [:create]
   before_action :load_comment, except: [:create]
   after_action	:ajax_response
@@ -29,10 +31,16 @@ class CommentsController < ApplicationController
 
     def load_question
       @question = Question.find(params[:id])
+      return if @question.present?
+      flash[:danger] = t('messages.question_not_exist')
+      redirect_to root_url
     end
 
     def load_comment
       @comment = Comment.find(params[:id])
+      return if @comment.present?
+      flash[:danger] = t('messages.comment_not_exist')
+      redirect_to root_url
     end
 
     def ajax_response

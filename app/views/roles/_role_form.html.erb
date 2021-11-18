@@ -1,0 +1,15 @@
+<tr>
+  <%= form_for(@role) do |f| %>
+    <td width="25%">
+      <%= f.text_field :name, :required => true, class: "form-control rounded", placeholder: t('form.role_name_plh') %>
+    </td>
+    <td width="55%">
+      <%= f.text_field :description, class: "form-control rounded", placeholder: t('form.role_description_plh') %>
+    </td>
+    <td width="20%">
+      <span class="table-add">
+        <%= f.submit t('button.add'), class: "mr-3 btn btn-dark rounded btn-custom btn-add-new" %>
+      </span>
+    </td>
+  <% end %>
+</tr>

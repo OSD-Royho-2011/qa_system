@@ -1,0 +1,35 @@
+<% provide(:title, @role.name) %>
+<div class="row">
+  <div class="col-sm-12">
+    <%= render 'shared/flash_message' %>
+    <div class="iq-card">
+      <div class="iq-card-header d-flex justify-content-between">
+          <div class="iq-header-title">
+            <h4 class="card-title"><%= t('titles.role', role: @role.name) %></h4>
+          </div>
+      </div>
+      <div class="iq-card-body">
+          <div id="table" class="table-editable">
+            <table class="table table-borderless table-responsive-md table-striped">
+                <thead>
+                  <tr>
+                      <th width="40%"><%= t('form.subject_class') %></th>
+                      <th width="30%"><%= t('form.permission_action') %></th>
+                      <th width="30%"><%= t('form.action') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render 'permission_form' %>
+                  <% if !@permissions.empty? %>
+                    <%= render partial: 'roles/permission', locals: { permissions: @permissions } %>
+                  <% else %>
+                    <td colspan="4" style="text-align: center"><%= t('messages.role_has_no_permission', role: @role.name) %><td>
+                  <% end %>
+                </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+<% parent_layout "layouts/base_layout" %>
