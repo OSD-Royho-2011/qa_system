@@ -25,8 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    return @question if current_user.super_admin?
-    return @question if current_user.manager?
+    return @question if !current_user.member?
     return @question if @question.waiting? && is_owner(@question)
     return @question if @question.approved?
     flash[:danger] = t('messages.no_permission')
@@ -63,14 +62,14 @@ class QuestionsController < ApplicationController
   end
 
   def like
-    return if @question.waiting? && !current_user.super_admin?
+    return if @question.waiting? && current_user.member?
     return @question.actions.likable.create(user: current_user) if @action.nil?
     return @action.change_to_liked if @action.dislikable?
     @action.destroy
   end
 
   def dislike
-    return if @question.waiting? && !current_user.super_admin?
+    return if @question.waiting? && current_user.member?
     return @question.actions.dislikable.create(user: current_user) if @action.nil? 
     return @action.change_to_disliked if @action.likable?
     @action.destroy

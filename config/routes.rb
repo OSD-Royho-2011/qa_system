@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   end
   get "/signup", to: "users#new"
   get "/profile", to: "users#show"
-  get "/setting", to: "users#setting"
   get "/edit", to: "users#edit"
   get "/recover-password", to: "password_resets#new"
   get "/change-password", to: "password_resets#edit"
@@ -34,4 +33,7 @@ Rails.application.routes.draw do
   post "new-role-permission", to: "roles#create_permission_role"
   post "delete-permission", to: "roles#delete_role_permission"
   get "load-action", to: "roles#load_permission_actions"
+  post "renew-password", to: "users#change_password"
+  post "update-info", to: "users#update_basic_info"
+  match '*path' => 'errors#error_404', via: :all
 end

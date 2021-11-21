@@ -1,18 +1,22 @@
-<% provide(:title, 'UiCA') %>
+<% provide(:title, @user.name) %>
 <div class="row">
     <div class="col-sm-12">
         <div class="iq-card">
             <div class="iq-card-body profile-page p-0">
                 <div class="profile-header">
                     <div class="cover-container">
-                        <img src="<%= image_url('page-img/profile-bg1.jpg') %>" alt="profile-bg" class="rounded img-fluid">
+                        <img src="<%= image_url('page-img/profile-bg8.jpg') %>" alt="profile-bg" class="rounded img-fluid">
                     </div>
                     <div class="user-detail text-center mb-3">
                         <div class="profile-img">
-                            <img src="<%= image_url('user/11.png') %>" alt="profile-img" class="avatar-130 img-fluid" />
+                            <% if @user.image.attached? %>
+                                <%= image_tag @user.display_image, class: "avatar-130 img-fluid", alt: "profile-img" %>
+                            <% else %>
+                                <img src="<%= image_url('user/user.png') %>" alt="profile-img" class="avatar-130 img-fluid" />
+                            <% end %>
                         </div>
                         <div class="profile-detail">
-                            <h3 class="">UiCA</h3>
+                            <h3 class=""><%= @user.name %></h3>
                         </div>
                     </div>
                     <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
@@ -21,7 +25,7 @@
                             <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
                                 <li class="text-center pl-3">
                                     <h6><%= t('titles.question') %></h6>
-                                    <p class="mb-0">20</p>
+                                    <p class="mb-0"><%= @questions.count %></p>
                                 </li>
                             </ul>
                         </div>
@@ -47,7 +51,21 @@
     <div class="col-sm-12">
         <div class="tab-content">
             <div class="tab-pane fade active show" id="timeline" role="tabpanel">
-                <%= render 'question_list' %>
+                <% if @questions.any? %>
+                    <div class="iq-card">
+                        <div class="iq-card-body p-0">
+                            <div class="iq-email-listbox">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" role="tabpanel">
+                                        <ul class="iq-email-sender-list">
+                                            <%= render @questions %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
             </div>
             <div class="tab-pane fade" id="about" role="tabpanel">
                 <%= render 'info' %>

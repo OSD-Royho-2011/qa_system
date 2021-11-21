@@ -2,7 +2,13 @@
     <div class="d-flex align-self-center">
         <div class="iq-email-sender-info">
             <div class="user-img img-fluid">
-                <img class="rounded-circle avatar-40" src="<%= question.private_token.present? ? image_url('user/anonymous.jpg') : image_url('user/01.jpg') %>" alt="">
+                <% if question.private_token.present? %>
+                    <img class="rounded-circle avatar-40" src="<%= image_url('user/anonymous.jpg')%>" alt="">
+                <% elsif question.user.image.attached? %>
+                    <%= image_tag question.user.display_image, class: "rounded-circle avatar-40", alt: "profile-pic" %>
+                <% else %>
+                    <img class="rounded-circle avatar-40" src="<%= image_url('user/user.png') %>" alt="profile-pic">
+                <% end %>
             </div>
             <% if question.private_token.present? %>
                 <%= link_to t('title.anonymous'), question, class: "iq-email-title" %>
@@ -11,10 +17,10 @@
             <% end %>
         </div>
         <div class="iq-email-content">
-            <%= link_to question.content, question, class: "iq-email-subject" %>
+            <%= link_to question.content.gsub(/([\w\s]{50}).+/,'\1...'), question, class: "iq-email-subject" %>
             <div class="iq-email-date"><%= time_ago_in_words(question.created_at) %>&nbsp;<%= t('messages.ago') %></div>
         </div>
-        <% if (current_user.super_admin? || current_user.manager?) && question.waiting? %>
+        <% if !current_user.member? && question.waiting? %>
             <ul class="iq-social-media">
                 <li data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.approve_question') %>">
                     <%= link_to approve_question_path(question.id), method: :put do %>

@@ -1,0 +1,40 @@
+
+<div class="iq-card">
+    <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+            <h4 class="card-title"><%= t('titles.personal_info') %></h4>
+        </div>
+    </div>
+    <div class="iq-card-body">
+         <%= form_for(:user, url: update_info_path) do |f| %>
+            <%= render 'shared/error_messages', object: current_user %>
+            <%= render 'shared/flash_message' %>
+            <div class="form-group row align-items-center">
+                <div class="col-md-12">
+                    <div class="profile-img-edit">
+                        <% if current_user.image.attached? %>
+                            <%= image_tag current_user.display_image, class: "profile-pic", alt: "profile-pic" %>
+                        <% else %>
+                            <img class="profile-pic" src="<%= image_url('user/user.png') %>" alt="profile-pic">
+                        <% end %>
+                        <div class="p-image">
+                            <i class="fas fa-pencil-alt" id="edit-icon"></i>
+                            <%= f.file_field :image, accept: "image/", class: "file-upload", id: "avt-input" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="form-group col-sm-6">
+                    <%= f.label :name %>
+                    <%= f.text_field :name, :value => current_user.name, :required => true, class: 'form-control', placeholder: t('form.full_name') %>
+                </div>
+                <div class="form-group col-sm-6">
+                    <%= f.label :email %>
+                    <%= f.text_field :email, :value => current_user.email, :required => true, class: 'form-control', placeholder: t('form.full_name') %>
+                </div>
+            </div>
+            <%= f.submit t('button.submit'), class: "btn btn-primary mr-2" %>
+        <% end %>
+    </div>
+</div>

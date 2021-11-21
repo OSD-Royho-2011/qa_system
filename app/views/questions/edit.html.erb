@@ -12,7 +12,7 @@
                     <%= form_for(@question) do |f| %>
                         <div class="d-flex align-items-center">
                             <div class="user-img">
-                                <img src="<%= image_url('user/1.jpg') %>" alt="userimg" class="avatar-60 rounded-circle img-fluid">
+                                <img src="<%= image_url('user/user.png') %>" alt="userimg" class="avatar-60 rounded-circle img-fluid">
                             </div>
                             <div class="post-text ml-3 w-100">
                                 <%= f.text_field :content, :required => true, class: 'form-control mb-0', placeholder: t('form.create_qa'), style: 'border:none;' %>

@@ -2,163 +2,40 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="iq-card">
-        <div class="iq-card-body p-0">
-            <div class="iq-edit-list">
-                <ul class="iq-edit-profile d-flex nav nav-pills">
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                        <%= t('titles.personal_info') %>
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#chang-pwd">
-                        <%= t('titles.change_password') %>
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#manage-contact">
-                        <%= t('titles.manage_contact') %>
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#emailsms">
-                        <%= t('titles.email_sms') %>
-                        </a>
-                    </li>
-                </ul>
+            <div class="iq-card-body p-0">
+                <div class="iq-edit-list">
+                    <ul class="iq-edit-profile d-flex align-items-center justify-content-center nav nav-pills">
+                        <li class="col-md-3 p-0">
+                            <a class="nav-link <%= "active" if @change_psw_flag.nil? %>" data-toggle="pill" href="#personal-information">
+                            <%= t('titles.personal_info') %>
+                            </a>
+                        </li>
+                        <li class="col-md-3 p-0">
+                            <a class="nav-link <%= "active" if @change_psw_flag %>" data-toggle="pill" href="#chang-pwd">
+                            <%= t('titles.change_password') %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     </div>
     <div class="col-lg-12">
         <div class="iq-edit-list-data">
             <div class="tab-content">
-                <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title"><%= t('titles.personal_info') %></h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <form>
-                                <div class="form-group row align-items-center">
-                                    <div class="col-md-12">
-                                        <div class="profile-img-edit">
-                                            <img class="profile-pic" src="<%= image_url('user/11.png') %>" alt="profile-pic">
-                                            <div class="p-image">
-                                                <i class="fas fa-pencil-alt"></i>
-                                                <input class="file-upload" type="file" accept="image/*"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" row align-items-center">
-                                    <div class="form-group col-sm-6">
-                                        <label for="fname"><%= t('form.first_name') %>:</label>
-                                        <input type="text" class="form-control" id="fname">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="lname"><%= t('form.last_name') %>:</label>
-                                        <input type="text" class="form-control" id="lname">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="uname"><%= t('form.user_name') %>:</label>
-                                        <input type="text" class="form-control" id="uname">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="cname"><%= t('form.city') %>:</label>
-                                        <input type="text" class="form-control" id="cname">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label class="d-block"><%= t('form.gender') %>:</label>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="male" name="male" class="custom-control-input">
-                                            <label class="custom-control-label" for="male"> <%= t('form.male') %> </label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="female" name="female" class="custom-control-input">
-                                            <label class="custom-control-label" for="female"> <%= t('form.female') %> </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="dob"><%= t('form.dob') %>:</label>
-                                        <input  class="form-control" id="dob">
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label><%= t('form.address') %>:</label>
-                                        <input  class="form-control" id="dob">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2"><%= t('button.submit') %></button>
-                                <button type="reset" class="btn iq-bg-danger"><%= t('button.cancel') %></button>
-                            </form>
-                        </div>
-                    </div>
+                <div class="tab-pane fade <%= "active show" if @change_psw_flag.nil? %>" id="personal-information" role="tabpanel">
+                    <%= render 'basic_info_form' %>
                 </div>
-                <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title"><%= t('titles.change_password') %></h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="cpass"><%= t('form.current_psw') %>:</label>
-                                    <a href="javascripe:void();" class="float-right"><%= t('form.forgot_password') %></a>
-                                    <input type="Password" class="form-control" id="cpass" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="npass"><%= t('form.new_psw') %>:</label>
-                                    <input type="Password" class="form-control" id="npass" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="vpass"><%= t('form.verify_psw') %>:</label>
-                                    <input type="Password" class="form-control" id="vpass" value="">
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2"><%= t('button.submit') %></button>
-                                <button type="reset" class="btn iq-bg-danger"><%= t('button.cancel') %></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="manage-contact" role="tabpanel">
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title"><%= t('titles.manage_contact') %></h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="cno"><%= t('form.contact_number') %>:</label>
-                                    <input type="text" class="form-control" id="cno">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email"><%= t('form.email') %>:</label>
-                                    <input type="text" class="form-control" id="email">
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2"><%= t('button.submit') %></button>
-                                <button type="reset" class="btn iq-bg-danger"><%= t('button.cancel') %></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="emailsms" role="tabpanel">
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title"><%= t('titles.email_sms') %></h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">Coming soon...</div>
-                    </div>
+                <div class="tab-pane fade <%= "active show" if @change_psw_flag %>" id="chang-pwd" role="tabpanel">
+                    <%= render 'change_password' %>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <% parent_layout "layouts/base_layout" %>
+<script type="text/javascript">
+    $('#edit-icon').on('click', function() {
+        $('#avt-input').click();
+    });
+</script>

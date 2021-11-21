@@ -21,7 +21,7 @@
                             <h6><%= t('titles.email') %></h6>
                         </div>
                         <div class="col-9">
-                            <p class="mb-0">uica@gmail.com</p>
+                            <p class="mb-0"><%= current_user.email %></p>
                         </div>
                         <div class="col-3">
                             <h6><%= t('titles.mobile') %></h6>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="tab-pane fade" id="details" role="tabpanel">
                     <h4 class="mb-3"><%= t('titles.about_you') %></h4>
-                    <p>Hi, I’m UiCA, I’m 22 and I work as a Software Engineer.</p>
+                    <p>Hi, I’m <%= current_user.name %>, I’m 22 and I work as a Software Engineer.</p>
                     <h4 class="mt-3 mb-3"><%= t('titles.other_name') %></h4>
                     <p>Tom Dean</p>
                     <h4 class="mt-3 mb-3"><%= t('titles.favourite_quotes') %></h4>

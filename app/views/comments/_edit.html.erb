@@ -1,15 +1,18 @@
 <div class="modal fade" id="edit-comment-<%= comment.id %>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <%= form_for(comment, remote: true) do |f| %>
-              <div class="modal-body">
-                  <%= f.text_area :content, :required => true, class: 'form-control', id: 'comment-data' %>
-              </div>
-              <div class="modal-footer" style="border-top: none;">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('titles.close') %></button>
-                  <%= f.submit t('titles.save_change'), class: "btn btn-primary" %>
-              </div>
-          <% end %>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="post-modalLabel"><%= t('titles.edit_comment') %></h5>
+            </div>
+            <%= form_for(comment, remote: true) do |f| %>
+                <div class="modal-body">
+                    <%= f.text_area :content, :required => true, class: 'form-control', id: 'comment-data' %>
+                </div>
+                <div class="modal-footer" style="border-top: none;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('titles.close') %></button>
+                    <%= f.submit t('titles.save_change'), class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
   </div>
 </div>

@@ -26,7 +26,11 @@
                     <% end %>
                     <li>
                         <a href="<%= profile_path %>" class="iq-waves-effect d-flex align-items-center">
-                            <img src="<%= image_url('user/1.jpg') %>" class="img-fluid rounded-circle mr-3" alt="user">
+                            <% if current_user.image.attached? %>
+                                <%= image_tag current_user.display_image, class: "img-fluid rounded-circle mr-3", alt: "userimg" %>
+                            <% else %>
+                                <img class="img-fluid rounded-circle mr-3" src="<%= image_url('user/user.png') %>" alt="userimg">
+                            <% end %>
                             <div class="caption">
                                 <h6 class="mb-0 line-height"><%= current_user.name %></h6>
                             </div>
@@ -47,7 +51,7 @@
                             <div class="iq-card shadow-none m-0">
                                 <div class="iq-card-body p-0 ">
                                     <div class="bg-primary p-3 line-height">
-                                        <h5 class="mb-0 text-white line-height"><%= t('titles.hello') %> UiCA</h5>
+                                        <h5 class="mb-0 text-white line-height"><%= t('titles.hello') %> <%= current_user.name %></h5>
                                     </div>
                                     <a href="<%= profile_path %>" class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">

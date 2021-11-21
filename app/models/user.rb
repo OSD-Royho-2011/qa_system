@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :actions
   has_many :comments
   belongs_to :role
+  has_one_attached :image
   before_save   :downcase_email
   before_create :create_activation_digest
   scope :where_not_admin, -> { where('role_id != ?', Role.find_by_name("Super Admin").id) }
@@ -13,7 +14,14 @@ class User < ApplicationRecord
                   format: { with: VALID_EMAIL_REGEX },
                   uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :image, content_type: { in: %w[image/jpeg image/gif image/png], message: "must be a valid image format" },
+  size: { less_than: 5.megabytes, message: "should be less than 5MB" }
+
+  # Returns a resized image for display.
+  def display_image
+    image.variant(resize_to_limit: [500, 500])
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -81,9 +89,14 @@ class User < ApplicationRecord
     self.role.name == "Super Admin"
   end
 
-  # Check is super admin
+  # Check is super manager
   def manager?
     self.role.name == "Manager"
+  end
+
+  # Check is super manager
+  def member?
+    self.role.name == "Member"
   end
 
   private

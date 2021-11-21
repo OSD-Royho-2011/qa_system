@@ -1,0 +1,21 @@
+<% content_for :stylesheets do %>
+    <%= render 'layouts/common_stylesheets' %>
+<% end %>
+<% content_for :javascripts do %>
+    <%= render 'javascripts' %>
+<% end %>
+<div class="wrapper">
+  <div class="container p-0">
+      <div class="row no-gutters">
+        <div class="col-sm-12 text-center">
+            <div class="iq-error position-relative mt-5">
+                <img src="<%= image_url('error/01.png') %>" class="img-fluid iq-error-img" />
+                <%= yield %>
+                <%= link_to root_path, class: 'btn btn-primary mt-3' do %>
+                  <%= t('button.back_home')%> <i class="fas fa-home"></i>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

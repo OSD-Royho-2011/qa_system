@@ -12,7 +12,13 @@
                             </a>
                         </div>
                         <div class="media-support-user-img mr-3">
-                            <img class="rounded-circle img-fluid" src="<%= @question.private_token.present? ? image_url('user/anonymous.jpg') : image_url('user/01.jpg') %>" alt="">
+                            <% if @question.private_token.present? %>
+                                <img class="rounded-circle img-fluid" src="<%= image_url('user/anonymous.jpg')%>" alt="">
+                            <% elsif @question.user.image.attached? %>
+                                <%= image_tag @question.user.display_image, class: "rounded-circle img-fluid", alt: "profile-pic" %>
+                            <% else %>
+                                <img class="rounded-circle img-fluid" src="<%= image_url('user/user.png') %>" alt="profile-pic">
+                            <% end %>
                         </div>
                         <div class="media-support-info mt-2">
                             <h5 class="mb-0 d-inline-block">
@@ -24,8 +30,11 @@
                             </h5>
                             <p class="mb-0 d-inline-block"><%= t('messages.post_about') %>&nbsp;<%= @question.categories.pluck(:name).join('/') %></p>
                             <p class="mb-0 text-primary"><%= time_ago_in_words(@question.created_at) %> &nbsp;<%= t('messages.ago') %></p>
+                            <% if is_owner(@question) && @question.waiting? %>
+                                <p class="mb-0 text-danger"><%= t('messages.question_info', status: @question.status) %></p>
+                            <% end %>
                         </div>
-                        <% if (current_user.super_admin? || current_user.manager?) && @question.waiting? %>
+                        <% if !current_user.member? && @question.waiting? %>
                             <div class="mr-3 mt-2 question-action" data-toggle="tooltip" data-placement="bottom" title="<%= t('messages.approve_question') %>">
                                 <%= link_to approve_question_path, method: :put do %>
                                     <h4 class="m-0"><i class="fas fa-check"></i></h4>

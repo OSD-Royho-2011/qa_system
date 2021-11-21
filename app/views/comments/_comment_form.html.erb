@@ -1,5 +1,5 @@
 <%= form_for(@comment, :html => {:class =>'comment-text d-flex align-items-center mt-3'}, :remote => true) do |f| %>
-  <%= f.text_field :content, :required => true, class: 'form-control rounded', placeholder: t('form.your_comment') %>
+  <%= f.text_field :content, :required => true, class: 'form-control rounded', placeholder: t('form.your_comment'), disabled: is_owner(@question) && @question.waiting? %>
   <div class="comment-attagement d-flex">
     <button type="submit" class="comment-button"><i class="fas fa-comment-dots mr-3"></i></button>
   </div>

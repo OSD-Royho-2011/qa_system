@@ -71,6 +71,14 @@ en:
     category_table: "Question category table"
     joined_on: "Joined on"
     role: "%{role} role"
+    bad_404: "404 Not Found"
+    bad_404_title: "Oops! This Page is Not Found."
+    bad_404_msg: "The requested page dose not exist."
+    bad_500: "500 Internal Server"
+    bad_500_title: "Oops! This Page is Not Working."
+    bad_500_msg: "The requested is Internal Server Error."
+    edit_comment: "Edit comment"
+    reply_comment: "Reply comment"
   form:
     full_name: "Your full name"
     email: "Email address"
@@ -109,6 +117,7 @@ en:
     subject_class: "Class"
     permission_action: "Actions"
     description: "Description"
+    old_password: "Old password"
   messages:
     enter_info: "Enter your email address and password to access admin panel."
     invalid_login_info: "Invalid email or password"
@@ -155,6 +164,9 @@ en:
     comment_not_exist: "The requested comment is not existed"
     category_not_exist: "The requested category is not existed"
     role_not_exist: "The requested role is not existed"
+    question_info: "This question is %{status} for approving"
+    invalid_old_password: " is incorrect"
+    update_info_success: "User info has been updated successfully"
   status:
     pending: "Pending"
     approved: "Approved"
@@ -169,6 +181,7 @@ en:
     add: "Add"
     edit: "Edit"
     view: "View"
+    back_home: "Back to Home"
   activerecord:
     attributes:
       user:

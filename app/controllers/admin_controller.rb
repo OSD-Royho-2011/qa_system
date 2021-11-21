@@ -23,7 +23,7 @@ class AdminController < ApplicationController
     def load_user
       @user = User.find_by(id: params[:id])
       return if @user.present?
-      flash[:danger] = user_not_exist
+      flash[:danger] = t('messages.user_not_exist')
       redirect_to user_management_path
     end
 

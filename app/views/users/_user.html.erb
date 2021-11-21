@@ -1,6 +1,10 @@
 <li class="d-flex align-items-center">
   <div class="user-img img-fluid">
-      <img src="<%= image_url('user/05.jpg') %>" alt="story-img" class="rounded-circle avatar-40">
+      <% if user.image.attached? %>
+          <%= image_tag user.display_image, class: "rounded-circle avatar-40", alt: "profile-img" %>
+      <% else %>
+          <img src="<%= image_url('user/user.png') %>" alt="profile-img" class="rounded-circle avatar-40" />
+      <% end %>
   </div>
   <div class="media-support-info ml-3">
       <h6><%= user.name %></h6>
