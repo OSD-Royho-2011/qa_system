@@ -1,0 +1,16 @@
+<body>
+  <h1>Your daily codefact is here! 😺</h1>
+  <h3>
+    DID YOU KNOW?
+  </h3>
+  <p>
+    <%= @fact %> 🐈
+  </p>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <p>
+    <%= link_to "Unsubscribe", unsubscribe_url(email: @user.email), target: "_blank" %>
+  </p>
+</body>

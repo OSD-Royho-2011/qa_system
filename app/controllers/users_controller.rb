@@ -23,13 +23,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = Role.find_by(name: "Member")
-    if @user.save
-      @user.send_activation_email
-      flash[:secondary] = t('messages.check_email')
-      redirect_to login_url
-    else
-      render :new
-    end
+    render :new if !@user.save
+    EmailActivationWorker.perform_async(@user.id)
+    flash[:secondary] = t('messages.check_email')
+    redirect_to login_url
   end
 
   def switch_mode

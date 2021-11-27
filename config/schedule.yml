@@ -1,0 +1,4 @@
+report_worker:
+  cron: "2 * * * *"
+  class: "ReportWorker"
+  queue: "default"

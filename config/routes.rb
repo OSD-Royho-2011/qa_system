@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root "questions#index"
   get "/login", to: "auth#new"
@@ -35,5 +37,6 @@ Rails.application.routes.draw do
   get "load-action", to: "roles#load_permission_actions"
   post "renew-password", to: "users#change_password"
   post "update-info", to: "users#update_basic_info"
-  match '*path' => 'errors#error_404', via: :all
+  # match '*path' => 'errors#error_404', via: :all
+  mount Sidekiq::Web => '/sidekiq'
 end
