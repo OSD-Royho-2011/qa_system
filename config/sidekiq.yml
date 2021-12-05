@@ -1,0 +1,4 @@
+
+:queues:
+  - send_activation_mail
+  - other_queue
