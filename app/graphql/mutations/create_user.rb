@@ -6,7 +6,7 @@ module Mutations
     argument :password_confirmation, String, required: true
     argument :role_id, Integer, required: true
 
-    field :user, Types::UserType, null: false
+    field :user, Types::UserType, null: true
     field :errors, [String], null: false
 
     def resolve(**arg)

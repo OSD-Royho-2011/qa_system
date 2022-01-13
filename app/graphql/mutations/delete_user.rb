@@ -4,19 +4,12 @@ module Mutations
 
     field :errors, [String], null: false
 
-    def resolve(id:, **arg)
+    def resolve(id:)
       user = User.find(id)
-      if user.present? && user.destroy
-        {
-          errors: []
-        }
-      else
-        {
-          errors: ['record-not-found']
-        }
-      end
-    rescue ActiveRecord::RecordNotFound
-      return { user: nil, errors: ['record-not-found'] }
+      
+      user.destroy
+    rescue ActiveRecord::RecordNotFound => e
+      return { user: nil, errors: e }
     end
   end
 end
