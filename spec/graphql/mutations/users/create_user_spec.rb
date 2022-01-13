@@ -17,7 +17,7 @@ RSpec.describe ::Mutations::CreateUser do
 
   let(:response) { QaSystemSchema.execute(query_string, variables: variables) }
   let(:admin_role) do
-    Role.create(name: "Test")
+    Role.create(name: "Test Oke")
   end 
 
   it 'create user successfully' do
